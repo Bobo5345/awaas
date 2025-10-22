@@ -1,4 +1,5 @@
 import catenv from "catenv";
+import { SerialPort, ReadlineParser } from 'serialport';
 import moodlog from "moodlog";
 import { Groq } from "groq-sdk";
 import NodeWebcam from "node-webcam";
@@ -23,6 +24,17 @@ const webcam = NodeWebcam.create({
   device: false,
   callbackReturn: "location",
   verbose: false,
+});
+
+const port = new SerialPort({
+  path: '/dev/ttyUSB0',
+  baudRate: 9600,
+});
+
+const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+
+parser.on('data', (data) => {
+  console.log('Arduino says:', data);
 });
 
 const captureImage = async () => {

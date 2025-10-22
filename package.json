@@ -4,7 +4,8 @@
     "groq-sdk": "^0.34.0",
     "jimp": "^1.6.0",
     "moodlog": "^1.0.8",
-    "node-webcam": "^0.8.2"
+    "node-webcam": "^0.8.2",
+    "serialport": "^13.0.0"
   },
   "name": "awaas",
   "version": "1.0.0",
