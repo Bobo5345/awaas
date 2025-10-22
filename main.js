@@ -21,21 +21,22 @@ const webcam = NodeWebcam.create({
   delay: 0,
   saveShots: true,
   output: "png",
-  device: false,
+  // device: false,
+  device: "/dev/video2",
   callbackReturn: "location",
   verbose: false,
 });
 
 const port = new SerialPort({
-  path: '/dev/ttyUSB0',
+  path: '/dev/ttyACM0',
   baudRate: 9600,
 });
 
 const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
-parser.on('data', (data) => {
-  console.log('Arduino says:', data);
-});
+// parser.on('data', (data) => {
+//   console.log('Arduino says:', data);
+// });
 
 const captureImage = async () => {
   try {
@@ -94,12 +95,18 @@ const analyse = async () => {
   const imagePath = await captureImage();
   if (imagePath) {
     const classification = await processImage(imagePath);
+    // port.write(classification + '\n', (err) => {
+    //   if (err) {
+    //     return console.error('Error writing to Arduino:', err.message);
+    //   }
+    //   console.log('Message sent:', message);
+    // });
   } else {
     moodlog.error("No image captured.");
   }
 }
 
-const main = async (threshold = 2000000, interval = 4000) => {
+const main = async (threshold = 240000, interval = 4000) => {
   let previousImage = null;
 
   const captureAndCompare = async () => {
