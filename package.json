@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "catenv": "^1.0.1",
+    "groq-sdk": "^0.34.0",
+    "jimp": "^1.6.0",
+    "moodlog": "^1.0.8",
+    "node-webcam": "^0.8.2"
+  },
+  "name": "awaas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "nodemon main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

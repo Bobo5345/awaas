@@ -1,0 +1,10 @@
+.env
+/node_modules
+/.env
+.DS_Store
+/build
+/dist
+/.vscode
+/npm-debug.log
+/yarn-error.log
+/package-lock.json
